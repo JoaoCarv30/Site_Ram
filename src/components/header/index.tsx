@@ -2,6 +2,11 @@
 import { HiOutlineBars3 } from "react-icons/hi2";
 import { useState } from "react";
 import MenuList from "../menu_list";
+import { AnimatePresence, motion } from "framer-motion";
+import { IoMdClose } from "react-icons/io";
+import Container from "../container";
+
+import ram from '../../assets/ramsemfundo.png'
 
 
 const Header = () => {
@@ -16,29 +21,51 @@ const Header = () => {
 
 
   return (
-  
-    <header className="bg-black text-white p-4 flex items-center justify-between">
-    <h1 className="font-bold text-2xl">Logo</h1>
 
-    {/* Menu normal (aparece apenas em telas md ou maiores) */}
-    <nav className="hidden sm:flex gap-6">
-    <MenuList />
-    </nav>
+    <header className="bg-custom-orange text-white px-4 flex items-center justify-between">
+      <Container>
+        <section className="flex items-center justify-between">
+          <img src={ram} alt="logo da ram" className="w-1/4 sm:w-1/12 p-4"/>
 
-    {/* Menu hamburguer (só aparece em telas pequenas) */}
-    <nav className="relative sm:hidden">
-      <button onClick={handleMenu} className="text-2xl">
-        <HiOutlineBars3 className="text-3xl" />
-      </button>
+          {/* Menu normal (aparece apenas em telas md ou maiores) */}
+          <nav className="hidden sm:flex gap-6">
+            <MenuList />
+          </nav>
 
-      {menu && (
-        <div className="absolute top-full right-0 bg-black text-white w-40 mt-2 shadow-lg rounded-md">
-         <MenuList />
-        </div>
-      )}
-    </nav>
-  </header>
-    );
+          {/* Menu hamburguer (só aparece em telas pequenas) */}
+          <nav className="relative sm:hidden">
+            <button onClick={handleMenu} className="text-2xl">
+              <HiOutlineBars3 className="text-3xl" />
+            </button>
+
+            <AnimatePresence>
+              {menu && (
+                <motion.div
+                  className="w-screen h-screen bg-custom-orange bg-opacity-90 fixed top-0 left-0 z-50 flex items-center justify-center"
+                  initial={{ x: '-100%' }} // Começa fora da tela à esquerda
+                  animate={{ x: 0 }} // Move para a posição final (0px)
+                  exit={{ x: '-100%' }} // Volta para fora da tela à esquerda
+                  transition={{ type: 'spring', stiffness: 90, damping: 20 }}
+                >
+                  <button
+                    onClick={handleMenu}
+                    className="absolute top-4 right-4 text-2xl"
+                  >
+                    <IoMdClose />
+                  </button>
+                 <div className="w-full h-full flex items-center justify-center flex-col">
+
+                 <img src={ram} alt="ram" className="w-1/2 my-8" />
+                 <MenuList />
+                 </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </nav>
+        </section>
+      </Container>
+    </header>
+  );
 }
 
 export default Header
