@@ -24,13 +24,13 @@ const Header = () => {
 
     <header className="bg-custom-orange text-white px-4 flex items-center justify-between">
       <Container>
-        <section className="flex items-center justify-between">
-          <img src={ram} alt="logo da ram" className="w-24 sm:w-28 p-4"/>
+        <section className="flex items-center justify-between" >
+            <img src={ram} alt="logo da ram" className="w-24 sm:w-28 p-4" />
 
-          {/* Menu normal (aparece apenas em telas md ou maiores) */}
-          <nav className="hidden sm:flex gap-6">
-            <MenuList />
-          </nav>
+            {/* Menu normal (aparece apenas em telas md ou maiores) */}
+            <nav className="hidden sm:flex gap-6">
+              <MenuList />
+            </nav>
 
           {/* Menu hamburguer (só aparece em telas pequenas) */}
           <nav className="relative sm:hidden">
@@ -38,6 +38,8 @@ const Header = () => {
               <HiOutlineBars3 className="text-3xl" />
             </button>
 
+
+            {/* Menu que abre quando clicado no hamburguer  */}
             <AnimatePresence>
               {menu && (
                 <motion.div
@@ -53,15 +55,19 @@ const Header = () => {
                   >
                     <IoMdClose />
                   </button>
-                 <div className="w-full h-full flex items-center justify-center flex-col">
+                  <div className="w-full h-full flex flex-col items-center justify-center">
 
-                 <img src={ram} alt="ram" className="w-1/2 my-8" />
-                 <MenuList />
-                 </div>
+                    <img src={ram} alt="ram" className="w-24 my-8" />
+                    <MenuList />
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
           </nav>
+
+          
+
+
         </section>
       </Container>
     </header>
