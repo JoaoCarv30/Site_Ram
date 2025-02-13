@@ -1,6 +1,7 @@
 
 import { HiOutlineBars3 } from "react-icons/hi2";
 import { useState } from "react";
+import MenuList from "../menu_list";
 
 
 const Header = () => {
@@ -10,9 +11,7 @@ const Header = () => {
 
 
   const handleMenu = () => {
-    console.log('menu')
     setMenu(!menu)
-    console.log(menu)
   }
 
 
@@ -23,12 +22,7 @@ const Header = () => {
 
     {/* Menu normal (aparece apenas em telas md ou maiores) */}
     <nav className="hidden sm:flex gap-6">
-      <ul className="flex gap-6">
-        <li className="cursor-pointer hover:text-gray-400">Home</li>
-        <li className="cursor-pointer hover:text-gray-400">Services</li>
-        <li className="cursor-pointer hover:text-gray-400">About</li>
-        <li className="cursor-pointer hover:text-gray-400">Contact</li>
-      </ul>
+    <MenuList />
     </nav>
 
     {/* Menu hamburguer (só aparece em telas pequenas) */}
@@ -39,12 +33,7 @@ const Header = () => {
 
       {menu && (
         <div className="absolute top-full right-0 bg-black text-white w-40 mt-2 shadow-lg rounded-md">
-          <ul className="flex flex-col items-center gap-4 p-4">
-            <li className="cursor-pointer hover:text-gray-400">Home</li>
-            <li className="cursor-pointer hover:text-gray-400">Services</li>
-            <li className="cursor-pointer hover:text-gray-400">About</li>
-            <li className="cursor-pointer hover:text-gray-400">Contact</li>
-          </ul>
+         <MenuList />
         </div>
       )}
     </nav>
