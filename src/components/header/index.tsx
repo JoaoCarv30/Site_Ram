@@ -25,12 +25,12 @@ const Header = () => {
     <header className="bg-custom-orange text-white px-4 flex items-center justify-between">
       <Container>
         <section className="flex items-center justify-between" >
-            <img src={ram} alt="logo da ram" className="w-24 sm:w-28 p-4" />
+          <img src={ram} alt="logo da ram" className="w-24 sm:w-28 p-4" />
 
-            {/* Menu normal (aparece apenas em telas md ou maiores) */}
-            <nav className="hidden sm:flex gap-6">
-              <MenuList />
-            </nav>
+          {/* Menu normal (aparece apenas em telas md ou maiores) */}
+          <nav className="hidden sm:flex gap-6">
+            <MenuList />
+          </nav>
 
           {/* Menu hamburguer (só aparece em telas pequenas) */}
           <nav className="relative sm:hidden">
@@ -64,11 +64,9 @@ const Header = () => {
               )}
             </AnimatePresence>
           </nav>
-
-          
-
-
         </section>
+
+
       </Container>
     </header>
   );
