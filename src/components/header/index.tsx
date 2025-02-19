@@ -22,7 +22,8 @@ const Header = () => {
 
   return (
 
-    <header className="bg-custom-orange text-white px-4 flex items-center justify-between">
+    <header className="fixed top-0 left-0 w-full z-50 bg-custom-orange text-white px-4 flex items-center justify-between shadow-md">
+
       <Container>
         <section className="flex items-center justify-between" >
           <img src={ram} alt="logo da ram" className="w-24 sm:w-28 p-4" />
