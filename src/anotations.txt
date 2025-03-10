@@ -1,5 +1,7 @@
 ENVIAR EMAIL COM EMAILJS 
 
+
+
 import React, { useState } from "react";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaWhatsapp } from "react-icons/fa";
 import emailjs from '@emailjs/browser';
@@ -80,3 +82,37 @@ const ContactPage: React.FC = () => {
       >
         <FaWhatsapp className="h-6 w-6" />
       </a>
+
+
+
+import emailjs from "@emailjs/browser";
+
+
+
+
+
+
+
+
+
+          try {
+      await emailjs.send(
+        import.meta.env.VITE_SERVICE_ID, // Substitua pelo seu Service ID
+        import.meta.env.VITE_TEMPLATE_ID, // Substitua pelo seu Template ID
+        formData,
+        import.meta.env.VITE_USER_ID // Substitua pelo seu User ID
+      );
+      setSubmitSuccess(true);
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: ""
+      });
+    } catch (error) {
+      setSubmitError("Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };  

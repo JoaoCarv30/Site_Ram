@@ -12,7 +12,8 @@ const LogoCarousel: React.FC<LogoCarouselProps> = ({ logos }) => {
   const CustomPrevArrow = (props: any) => (
     <button
       {...props}
-      className="absolute left-2 z-10 p-3 bg-white shadow-lg rounded-full -translate-y-1/2 top-1/2 hover:bg-gray-100 transition"
+      type="button"
+      className="absolute left-2 z-10 p-3 bg-white shadow-lg rounded-full -translate-y-1/2 top-1/2 hover:bg-gray-100 transition slick-prev"
     >
       <FaChevronLeft size={20} className="text-gray-600" />
     </button>
@@ -21,7 +22,8 @@ const LogoCarousel: React.FC<LogoCarouselProps> = ({ logos }) => {
   const CustomNextArrow = (props: any) => (
     <button
       {...props}
-      className="absolute right-2 z-10 p-3 bg-white shadow-lg rounded-full -translate-y-1/2 top-1/2 hover:bg-gray-100 transition"
+      type="button"
+      className="absolute right-2 z-10 p-3 bg-white shadow-lg rounded-full -translate-y-1/2 top-1/2 hover:bg-gray-100 transition slick-next"
     >
       <FaChevronRight size={20} className="text-gray-600" />
     </button>
@@ -38,38 +40,30 @@ const LogoCarousel: React.FC<LogoCarouselProps> = ({ logos }) => {
     prevArrow: <CustomPrevArrow />,
     nextArrow: <CustomNextArrow />,
     centerMode: true,
-    centerPadding: '0px',
+    centerPadding: "0px",
     responsive: [
       {
-        breakpoint: 1280, // Laptops
+        breakpoint: 1280,
         settings: {
           slidesToShow: 4,
-          centerMode: true,
-          centerPadding: '0px',
         },
       },
       {
-        breakpoint: 1024, // Tablets grandes
+        breakpoint: 1024,
         settings: {
           slidesToShow: 3,
-          centerMode: true,
-          centerPadding: '0px',
         },
       },
       {
-        breakpoint: 768, // Tablets menores
+        breakpoint: 768,
         settings: {
           slidesToShow: 2,
-          centerMode: true,
-          centerPadding: '0px',
         },
       },
       {
-        breakpoint: 480, // Celulares pequenos
+        breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          centerMode: true,
-          centerPadding: '0px',
         },
       },
     ],
@@ -84,7 +78,7 @@ const LogoCarousel: React.FC<LogoCarouselProps> = ({ logos }) => {
               <img
                 src={logo}
                 alt={`Logo ${index}`}
-                className="max-w-[80%] max-h-[80%] object-contain"
+                className="max-w-full max-h-full object-contain"
               />
             </div>
           </div>

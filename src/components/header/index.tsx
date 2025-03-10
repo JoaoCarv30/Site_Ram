@@ -17,6 +17,7 @@ const Header = () => {
 
   const handleMenu = () => {
     setMenu(!menu)
+    console.log(menu)
   }
 
 

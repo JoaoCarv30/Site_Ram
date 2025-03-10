@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaWhatsapp } from "react-icons/fa";
 import SocialMedia from "../midias";
 
+ // Importando o EmailJS
+
+ import emailjs from "@emailjs/browser";
 const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -28,8 +31,15 @@ const ContactPage: React.FC = () => {
     setSubmitError("");
 
     try {
-      // Simulação de envio do formulário
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Envio do e-mail usando EmailJS
+      const result = await emailjs.send(
+        import.meta.env.VITE_SERVICE_ID, // Serviço do EmailJS
+        import.meta.env.VITE_TEMPLATE_ID, // Template do EmailJS
+        formData, // Dados do formulário
+        import.meta.env.VITE_USER_ID // ID do usuário do EmailJS
+      );
+
+      console.log(result.text);
       setSubmitSuccess(true);
       setFormData({
         name: "",
@@ -38,8 +48,8 @@ const ContactPage: React.FC = () => {
         subject: "",
         message: ""
       });
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
+      console.error(error);
       setSubmitError("Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.");
     } finally {
       setIsSubmitting(false);
@@ -56,13 +66,13 @@ const ContactPage: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 ">
           {/* Informações de Contato */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg shadow-md p-6">
               <h2 className="text-2xl font-semibold text-gray-800 mb-6">Informações de Contato</h2>
 
-              <div className="space-y-6">
+              <div className="space-y-6 ">
                 <div className="flex items-start">
                   <div className="flex-shrink-0 mt-1">
                     <FaPhone className="h-6 w-6 text-blue-600" />
@@ -200,21 +210,18 @@ const ContactPage: React.FC = () => {
 
                     <div>
                       <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
-                        Assunto *
+                        Assunto
                       </label>
                       <select
-                        id="subject"
                         name="subject"
+                        id="subject"
                         value={formData.subject}
                         onChange={handleChange}
-                        required
                         className="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md p-3"
                       >
-                        <option value="">Selecione um assunto</option>
-                        <option value="atendimento">Atendimento ao Cliente</option>
-                        <option value="comercial">Contato Comercial</option>
-                        <option value="suporte">Suporte Técnico</option>
-                        <option value="outro">Outro Assunto</option>
+                        <option value="Orcamento">Orçamento</option>
+                        <option value="Servicos">Duvida sobre Serviços</option>
+                        <option value="Contato">Contato</option>
                       </select>
                     </div>
                   </div>
@@ -224,44 +231,48 @@ const ContactPage: React.FC = () => {
                       Mensagem *
                     </label>
                     <textarea
-                      id="message"
                       name="message"
-                      rows={6}
+                      id="message"
                       value={formData.message}
                       onChange={handleChange}
                       required
+                      rows={4}
                       className="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md p-3"
-                      placeholder="Digite sua mensagem aqui..."
+                      placeholder="Escreva sua mensagem aqui..."
                     />
                   </div>
 
                   {submitError && (
-                    <div className="bg-red-50 border-l-4 border-red-500 p-4">
+                    <div className="bg-red-50 border-l-4 border-red-500 p-4 mb-6">
                       <div className="flex">
                         <div>
-                          <p className="text-red-700">{submitError}</p>
+                          <p className="text-red-700 font-medium">Erro ao enviar mensagem!</p>
+                          <p className="text-red-600 mt-1">{submitError}</p>
                         </div>
                       </div>
                     </div>
                   )}
 
-                  <div className="flex justify-end">
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className={`inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${isSubmitting ? 'opacity-75 cursor-not-allowed' : ''}`}
-                    >
-                      {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
-                    </button>
-                  </div>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className={`w-full inline-flex justify-center py-3 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white ${
+                      isSubmitting ? "bg-gray-500" : "bg-blue-600 hover:bg-blue-700"
+                    } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500`}
+                  >
+                    {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
+                  </button>
                 </form>
               )}
+              
+              
             </div>
           </div>
         </div>
 
-        {/* Mapa */}
-        <div className="mt-12">
+
+           {/* Mapa */}
+           <div className="mt-12">
           <div className="bg-white rounded-lg shadow-md p-6">
             <h2 className="text-2xl font-semibold text-gray-800 mb-6">Nossa Localização</h2>
             <div className="w-full h-96 bg-gray-200 rounded-lg overflow-hidden">
@@ -270,8 +281,15 @@ const ContactPage: React.FC = () => {
             </div>
           </div>
         </div>
+
+
       </div>
+
+      
+      
+              
     </div>
+    
   );
 };
 
