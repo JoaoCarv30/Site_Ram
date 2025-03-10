@@ -1,5 +1,7 @@
 import { About } from "./components/about"
 import OurClients from "./components/clients"
+import ContactPage from "./components/contact"
+
 import Header from "./components/header"
 import Home from "./components/home"
 import OurServices from "./components/ourServices"
@@ -14,6 +16,8 @@ function App() {
     <About  />
     <OurServices />
     <OurClients />
+    <ContactPage />
+ 
     </>
   )
 }

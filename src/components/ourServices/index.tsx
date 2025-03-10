@@ -57,7 +57,7 @@ const services = [
 
 const OurServices = () => {
   return (
-    <section className="min-h-screen bg-white py-20 px-6">
+    <section className="min-h-screen bg-white py-20 px-6" id="services">
       <Container>
         <motion.div
           className="text-center"

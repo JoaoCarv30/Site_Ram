@@ -1,4 +1,5 @@
 // Home.js
+import { FaWhatsapp } from 'react-icons/fa';
 import Container from '../container';
 import { IoIosArrowDown } from "react-icons/io";
 
@@ -30,6 +31,15 @@ const Home = () => {
           </button>
         </section>
       </Container>
+      <a 
+        href="https://api.whatsapp.com/send?phone=5514997415648" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        className="fixed bottom-6 right-6 bg-green-600 hover:bg-green-700 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-50"
+        aria-label="Contato via WhatsApp"
+      >
+        <FaWhatsapp className="h-6 w-6" />
+      </a>
     </section>
   );
 };
